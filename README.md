@@ -1,28 +1,32 @@
-# Boostrapping and securing an Ubuntu server 
+# Boostrapping and securing an Ubuntu server
 
-This repository contains [Ansible](http://ansible.com) scripts for bootstrapping and securing an Ubuntu server.
-Scripts have been tested on Ubuntu 14.04 hosted on [RunAbove](http://www.runabove.com) and [DigitalOcean](http://www.digitalocean.com).
+This repository contains [Ansible](http://ansible.com) scripts for bootstrapping and securing an Ubuntu server. Scripts have been tested on Ubuntu 14.04 hosted on [RunAbove](http://www.runabove.com) and [DigitalOcean](http://www.digitalocean.com).
 
 The included tasks are following:
 
 * Update and upgrade Ubuntu packages via apt-get
 * Configure locale
 * Install ntp to synchronize time
-* Install vim and mc (my personal preference)
+* Install vim and mc \(my personal preference\)
 * Install fail2ban to block ssh brute-force attempts
 * Delete root password
 * Lock down sudo
 * Lock down ssh to prevent root and password login
 * Setup the ufw firewall
 * Configure unattended security upgrades
-* Install collectd deamon and collect-web front-end client (optionally) 
-* Create users (optionally)
+* Install collectd deamon and collect-web front-end client \(optionally\) 
+* Create users \(optionally\)
+* test prisma
+
+{% hint style="success" %}
+ca marche ?
+{% endhint %}
 
 ## Ansible
 
 First of all, install the latest version of Ansible, in Ubuntu:
 
-```
+```text
 $ sudo apt-get install software-properties-common
 $ sudo apt-add-repository ppa:ansible/ansible
 $ sudo apt-get update
@@ -33,7 +37,7 @@ $ sudo apt-get install ansible
 
 Next, clone this repository:
 
-```
+```text
 $ git clone https://github.com/zenzire/ansible-bootstrap-ubuntu.git
 ```
 
@@ -41,18 +45,18 @@ $ git clone https://github.com/zenzire/ansible-bootstrap-ubuntu.git
 
 Copy sample configuration files:
 
-```
+```text
 $ cp hosts.sample hosts
 $ cp group_vars/server.yml.sample group_vars/server.yml
 ```
 
-Edit configuration files (hosts and group_vars/server.yml) with your own configuration.
+Edit configuration files \(hosts and group\_vars/server.yml\) with your own configuration.
 
 ## Prerequisites for RunAbove hosting
 
 Set password for admin user and add this user to sudoers group.
 
-```
+```text
 $ ansible-playbook user.yml
 
 Enter username: admin
@@ -66,7 +70,7 @@ Add user to sudoers group (y/n) [n]: y
 
 Create admin user and add this user to sudoers group.
 
-```
+```text
 $ ansible-playbook user.yml --user root
 
 Enter username: admin
@@ -80,7 +84,7 @@ Add user to sudoers group (y/n) [n]: y
 
 Finally, execute bootstrap Ansible task for admin user:
 
-```
+```text
 $ ansible-playbook bootstrap.yml --ask-sudo
 sudo password:
 ```
@@ -89,7 +93,7 @@ sudo password:
 
 After successfully bootstrapping and securing your server, reboot server for kernel updates.
 
-```
+```text
 $ ansible-playbook reboot.yml --ask-sudo
 sudo password: 
 Are you sure you want to reboot server (yes/no)? [no]: yes
@@ -97,11 +101,9 @@ Are you sure you want to reboot server (yes/no)? [no]: yes
 
 ## Collectd
 
-Also you can install [collectd](https://collectd.org/), deamon which collects system performance statistics 
-periodically and [collectd-web](https://github.com/httpdss/collectd-web), web-based front-end for data 
-collected by collectd.
+Also you can install [collectd](https://collectd.org/), deamon which collects system performance statistics periodically and [collectd-web](https://github.com/httpdss/collectd-web), web-based front-end for data collected by collectd.
 
-```
+```text
 $ ansible-playbook collectd.yml --ask-sudo
 ```
 
@@ -109,12 +111,11 @@ $ ansible-playbook collectd.yml --ask-sudo
 
 You can add new user or update the existing one using the following script:
 
-```
+```text
 $ ansible-playbook user.yml --ask-sudo
 ```
 
-
 ## License
 
-Released under the MIT License, Copyright (c) 2015 - Marcin Mierzejewski
+Released under the MIT License, Copyright \(c\) 2015 - Marcin Mierzejewski
 
