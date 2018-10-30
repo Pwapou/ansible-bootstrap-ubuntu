@@ -117,28 +117,5 @@ $ ansible-playbook user.yml --ask-sudo
 
 ## License
 
-## Test
-
-{% hint style="info" %}
-ATTENTION CA MARCHE
-{% endhint %}
-
-1. a
-2. a
-3. a
-4. a
-5. a
-
-* [ ] a faire 1
-* [ ] a faire 2
-* [ ] a faire 3
-
-| test tab1 | test tab2 |
-| :--- | :--- |
-| djzeidjziodj | eziojdioje |
-|  | idjoizejd |
-| inzfez | ziofj |
-|  |  |
-
-
+Released under the MIT License, Copyright \(c\) 2015 - Marcin Mierzejewski
 
